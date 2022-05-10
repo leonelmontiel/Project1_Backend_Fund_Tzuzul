@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev":"npx nodemon index.js"
+    "dev": "npx nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/leonelmontiel/Project1_Backend_Fund_Tzuzul#readme",
   "dependencies": {
-    "express": "^4.18.0"
+    "express": "^4.18.0",
+    "mysql2": "^2.3.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
