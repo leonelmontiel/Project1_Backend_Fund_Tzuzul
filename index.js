@@ -7,7 +7,7 @@ const port = 4000;
 
 //importando router
 const users = require("./routes/users");
-
+// inicializando express
 const app = express();
 
 
@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, "static")));//Middleware para archiv
 app.use(users); //usando el router que ya había creado
 
 app.get("/", (req, res) => {
-    console.log(__dirname);
+    
     return res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
