@@ -1,4 +1,6 @@
 const express = require("express");
+const path = require("path");
+const view = require("../helpers/views")
 
 const router = express.Router(); //declarando un router
 
@@ -9,15 +11,11 @@ router.get("/users", (req,res) => {
 });
 
 router.get("/login", (req, res) => {
-    res.json({
-        ruta: "login"
-    })
+    return view("login.html",res)
 });
 
 router.get("/registration", (req, res) => {
-    res.json({
-        ruta: "registration"
-    })
+    return view("registration.html",res)
 });
 
 module.exports = router
