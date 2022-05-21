@@ -42,23 +42,15 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col col-md-6">
-        <form action="/registration" method="POST">
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required/>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email"  required/>
-          </div>
-          <div class="mb-3">
-            <label for="birthday" class="form-label">Birthday</label>
-            <input type="date" class="form-control" id="birthday" name="birthday"  required/>
-          </div>
+        <form id="signup">
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" name="username"  required/>
-          </div>
+          </div>          
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email"  required/>
+          </div>          
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" name="password"  required/>
@@ -74,6 +66,53 @@
       </div>
     </div>
   </div>
+
+  <p id="message"></p>
+
+  <script>
+    const signup = document.getElementById("signup")
+    const message = document.getElementById("message")
+
+    signup.onsubmit = function(event){
+        event.preventDefault()
+
+        fetch("/registration",{
+            method:"POST",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                username: signup.username.value,
+                email: signup.email.value,
+                password: signup.password.value
+            })
+        }).then(function(result){
+            console.log(result)
+            return result.json() // Devuelve un promesa
+        })
+        .then(function(data){
+            
+            if(data.error){
+                message.innerText = data.message
+            }else{
+                const user = data.user
+                message.innerText = ""
+                // Guardar data en el navegador
+                localStorage.setItem("id", user.id)
+                localStorage.setItem("name", user.name)
+                localStorage.setItem("username", user.username)
+                localStorage.setItem("email", user.email)
+                // Redirección
+                location.href = "/"
+            }
+
+            
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+    }
+</script>
 
 </body>
 </html>
