@@ -87,23 +87,25 @@
                 password: signup.password.value
             })
         }).then(function(result){
-            console.log(result)
+            //console.log(result)
             return result.json() // Devuelve un promesa
+            // Redirección
         })
         .then(function(data){
-            
+          location.href = "/login"
             if(data.error){
                 message.innerText = data.message
             }else{
-                const user = data.user
-                message.innerText = ""
-                // Guardar data en el navegador
-                localStorage.setItem("id", user.id)
-                localStorage.setItem("name", user.name)
-                localStorage.setItem("username", user.username)
-                localStorage.setItem("email", user.email)
-                // Redirección
-                location.href = "/"
+              message.innerText = data.message
+        //         const user = data.user
+        //         message.innerText = ""
+        //         // Guardar data en el navegador
+        //         localStorage.setItem("id", user.id)
+        //         localStorage.setItem("name", user.name)
+        //         localStorage.setItem("username", user.username)
+        //         localStorage.setItem("email", user.email)
+        //         // Redirección
+        //         
             }
 
             

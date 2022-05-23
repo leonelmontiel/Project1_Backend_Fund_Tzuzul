@@ -5,11 +5,14 @@ const path = require("path"); // path: nos permite administrar rutas de archivos
 const express = require("express");
 const port = 4000;
 
-//importando router
-const users = require("./routes/users");
 // inicializando express
 const app = express();
 
+
+//importando router
+const users = require("./routes/users");
+
+app.use(express.json())
 
 //sección para los middleware (van antes que la declaración del uso de routers)
 app.use(express.static(path.join(__dirname, "static")));//Middleware para archivos estáticos

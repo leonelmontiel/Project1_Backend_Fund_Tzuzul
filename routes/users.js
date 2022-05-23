@@ -23,9 +23,9 @@ router.get("/registration", async (req, res) => {
 
 router.post("/registration", async (req, res) => {
 
-    console.log(req.body);
+    //console.log(req.body);
     const user = new User(req.body)
-    console.log(user);
+    //console.log(user);
     const validation = user.validate()
 
     if (validation.validated) {
