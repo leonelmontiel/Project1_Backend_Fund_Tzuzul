@@ -46,8 +46,6 @@ class User {
                 [Object.keys(data), Object.values(data)]
             )
 
-            console.log(result);
-
             delete data.password
             data.id = result.insertId
 
@@ -66,7 +64,7 @@ class User {
         const result = await database.query("SELECT * FROM users WHERE email = ?", [this.email])
         const user = result[0]
         console.log(result[0])
-        //console.log(this.password)
+
         if (user) {
             if(await this.compare(this.password, user.password)) {
                 delete user.password
@@ -99,11 +97,7 @@ class User {
     }
 
     async compare(string, hash) {
-        return await bcrypt.compare(string, hash, function(err,res){
-            if(err){
-                console.log("error de bcrypt compare:", err)
-            }
-        })
+        return await bcrypt.compare(string, hash)
     }
 }
 

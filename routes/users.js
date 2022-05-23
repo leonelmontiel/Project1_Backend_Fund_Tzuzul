@@ -42,7 +42,7 @@ router.get("/login", async function(req, res) {
 router.post("/login", async function(req, res) {
     const user = new User(req.body)
     const result = await user.login()
-
+    
     return res.json(result)
 })
 

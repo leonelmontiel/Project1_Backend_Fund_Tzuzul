@@ -59,7 +59,7 @@
               <input type="password" class="form-control" id="password" name="password" />
             </div>
             <div class="mb-3">
-              <button type="submit" class="btn btn-primary w-100">Send</button>
+              <button type="submit" class="btn btn-primary w-100">Login</button>
             </div>
           </form>
 
@@ -84,10 +84,15 @@
           })
         })
         .then(function(data){
-            
+          return data.json()
+        })
+        .then(function(data){
+
             if(data.error){
                 console.log(data.message)
             }else{
+              //console.log(data.message)
+              //console.log(data.success)
                 const user = data.user
                 
                 // Guardar data en el navegador
@@ -99,10 +104,6 @@
             }
 
             
-        })
-        .then(function(result){
-            console.log(result)
-            return result.json() // Devuelve un promesa
         })
         .catch(function(error){
             console.log(error)
